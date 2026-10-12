@@ -31,10 +31,18 @@ In Codex, ask:
 Use $skill-installer to install https://github.com/XingXiaoshuang/Keil2CMake as the skill keil2cmake.
 ```
 
-For manual installation, clone this repository into a Codex user skill location and name the destination `keil2cmake`:
+For manual installation, clone this repository into a Codex user skill location and name the destination `keil2cmake`.
+
+Windows:
 
 ```powershell
 git clone https://github.com/XingXiaoshuang/Keil2CMake.git "$HOME\.agents\skills\keil2cmake"
+```
+
+macOS/Linux:
+
+```bash
+git clone https://github.com/XingXiaoshuang/Keil2CMake.git "$HOME/.agents/skills/keil2cmake"
 ```
 
 Codex scans user, repository, and system Skill locations. If a newly installed Skill is not visible immediately, restart Codex. See the [official Codex Skills documentation](https://developers.openai.com/codex/skills) for supported Skill locations and distribution guidance.
