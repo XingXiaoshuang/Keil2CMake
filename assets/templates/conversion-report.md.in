@@ -1,0 +1,46 @@
+# Keil to CMake conversion report
+
+## Scope
+
+- Source project:
+- Selected Keil target:
+- Source revision:
+- Converted output:
+
+## Evidence level
+
+State one: binary/runtime equivalence, executable comparison, build equivalence, or static migration.
+
+## Environment
+
+- Arm GNU Toolchain:
+- CMake:
+- Generator:
+- Original Arm Compiler/uVision, if available:
+
+## Mapping decisions
+
+- CPU/FPU/float ABI:
+- Source membership:
+- Defines and include order:
+- Language/extension behavior:
+- Assembler/startup:
+- Linker/scatter ownership:
+- Runtime library and retargeting:
+- File encodings and changed files:
+
+## Results
+
+- Configure:
+- Build:
+- Warning summary:
+- ELF/map/section comparison:
+- Tests or board smoke test:
+
+## Known differences
+
+-
+
+## Outstanding verification gates
+
+-

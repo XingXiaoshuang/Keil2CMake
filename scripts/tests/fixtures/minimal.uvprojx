@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+  <Targets>
+    <Target>
+      <TargetName>Board Debug</TargetName>
+      <TargetOption>
+        <TargetCommonOption>
+          <Device>STM32F407VG</Device>
+          <Vendor>STMicroelectronics</Vendor>
+          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x08000000,0x00100000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
+          <OutputDirectory>.\Objects\</OutputDirectory>
+          <OutputName>firmware</OutputName>
+          <CreateExecutable>1</CreateExecutable>
+          <CreateHexFile>1</CreateHexFile>
+        </TargetCommonOption>
+        <TargetArmAds>
+          <Cads>
+            <VariousControls>
+              <IncludePath>.\Inc;$(EXTERNAL_INCLUDE)</IncludePath>
+              <Define>STM32F407xx;BOARD_REV=2</Define>
+              <MiscControls>--c99 --split_sections</MiscControls>
+            </VariousControls>
+          </Cads>
+          <Aads>
+            <VariousControls>
+              <IncludePath>.\AsmInc</IncludePath>
+              <Define>ASM_TEST</Define>
+              <MiscControls>--xref</MiscControls>
+            </VariousControls>
+          </Aads>
+          <LDads>
+            <ScatterFile>.\fixed.sct</ScatterFile>
+            <MiscControls>--strict --callgraph</MiscControls>
+          </LDads>
+        </TargetArmAds>
+        <BeforeMake>
+          <RunUserProg1>echo before-build</RunUserProg1>
+        </BeforeMake>
+      </TargetOption>
+      <Groups>
+        <Group>
+          <GroupName>Application</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FilePath>.\src\main.c</FilePath>
+              <FileType>1</FileType>
+              <FileOption><CommonProperty><IncludeInBuild>1</IncludeInBuild></CommonProperty></FileOption>
+            </File>
+            <File>
+              <FileName>excluded.c</FileName>
+              <FilePath>.\src\excluded.c</FilePath>
+              <FileType>1</FileType>
+              <FileOption><CommonProperty><IncludeInBuild>0</IncludeInBuild></CommonProperty></FileOption>
+            </File>
+          </Files>
+          <Groups>
+            <Group>
+              <GroupName>Drivers</GroupName>
+              <Files>
+                <File>
+                  <FileName>missing.c</FileName>
+                  <FilePath>.\src\missing.c</FilePath>
+                  <FileType>1</FileType>
+                </File>
+              </Files>
+            </Group>
+          </Groups>
+        </Group>
+        <Group>
+          <GroupName>Generated</GroupName>
+          <Files>
+            <File>
+              <FileName>generated.c</FileName>
+              <FilePath>$(BUILD_GEN)\generated.c</FilePath>
+              <FileType>1</FileType>
+            </File>
+          </Files>
+        </Group>
+      </Groups>
+    </Target>
+  </Targets>
+</Project>

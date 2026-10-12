@@ -1,0 +1,5 @@
+interface:
+  display_name: "Keil to CMake"
+  short_description: "Migrate Keil projects to GCC CMake"
+  brand_color: "#0F766E"
+  default_prompt: "Use $keil2cmake to convert this Keil uVision project to a reproducible Arm GCC CMake build and verify the migration."

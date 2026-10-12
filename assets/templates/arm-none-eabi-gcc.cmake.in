@@ -1,0 +1,23 @@
+# Stable cross-compilation scaffold. Copy to cmake/arm-none-eabi-gcc.cmake,
+# rename/choose the compiler if required, then add only verified target ABI flags.
+
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+find_program(KEIL2CMAKE_ARM_GCC arm-none-eabi-gcc REQUIRED)
+find_program(KEIL2CMAKE_ARM_GXX arm-none-eabi-g++ REQUIRED)
+find_program(KEIL2CMAKE_ARM_AR arm-none-eabi-ar REQUIRED)
+find_program(KEIL2CMAKE_ARM_OBJCOPY arm-none-eabi-objcopy REQUIRED)
+find_program(KEIL2CMAKE_ARM_SIZE arm-none-eabi-size REQUIRED)
+
+set(CMAKE_C_COMPILER "${KEIL2CMAKE_ARM_GCC}")
+set(CMAKE_CXX_COMPILER "${KEIL2CMAKE_ARM_GXX}")
+set(CMAKE_AR "${KEIL2CMAKE_ARM_AR}")
+set(CMAKE_OBJCOPY "${KEIL2CMAKE_ARM_OBJCOPY}" CACHE FILEPATH "")
+set(CMAKE_SIZE "${KEIL2CMAKE_ARM_SIZE}" CACHE FILEPATH "")
+
+set(CMAKE_EXECUTABLE_SUFFIX ".elf")
+
+# Add -mcpu/-mfpu/-mfloat-abi here only after confirming the device and the ABI
+# of every linked object/library. Prefer target-scoped flags where possible.

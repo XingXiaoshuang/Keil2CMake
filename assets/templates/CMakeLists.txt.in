@@ -1,0 +1,37 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(keil_migrated_firmware LANGUAGES C ASM)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Replace this list with the exact selected UVPROJX target inventory.
+add_executable(firmware
+)
+
+target_include_directories(firmware PRIVATE
+)
+
+target_compile_definitions(firmware PRIVATE
+)
+
+# Start from a debuggable baseline; tune only with comparison evidence.
+target_compile_options(firmware PRIVATE
+)
+
+target_link_options(firmware PRIVATE
+)
+
+set_target_properties(firmware PROPERTIES
+  OUTPUT_NAME "firmware"
+  SUFFIX ".elf"
+)
+
+# Set LINKER_SCRIPT only after its memory map/startup contract is verified.
+# target_link_options(firmware PRIVATE "-T${CMAKE_CURRENT_SOURCE_DIR}/linker/firmware.ld")
+
+add_custom_command(TARGET firmware POST_BUILD
+  COMMAND "${CMAKE_OBJCOPY}" -O binary "$<TARGET_FILE:firmware>" firmware.bin
+  COMMAND "${CMAKE_OBJCOPY}" -O ihex "$<TARGET_FILE:firmware>" firmware.hex
+  COMMAND "${CMAKE_SIZE}" "$<TARGET_FILE:firmware>"
+  VERBATIM
+)
